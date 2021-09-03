@@ -1,19 +1,26 @@
 var express = require('express');
+var cors = require('cors');
+var axios = require('axios');
 
 // Create global app object
 var app = express();
+app.use(cors());
 
 app.get('/', function(req, res) {
-	res.send('💖CoinMerage Remote API💖');
+	res.send('??CoinMerage Remote API??');
 });
 // base url: https://api.coingecko.com/api/v3/coins
-app.get('/contract_market_chart/:id/contract/:address', function(req,res){
-	res.redirect(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}/market_chart/?vs_currency=usd&days=1`);
+app.get('/contract_market_chart/:id/:address', async function(req,res){
+	
+	var result = await axios.get(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}/market_chart/?vs_currency=usd&days=1`);
+	res.json(result.data);
 });
 
-app.get('/contract_info/:id/contract/:address', function(req, res) {
-	res.redirect(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}`)
+app.get('/contract_info/:id/:address', async function(req, res) {
+	var result = await axios.get(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}`);
+	res.json(result.data);
 });
+
 
 // finally, let's start our server...
 var server = app.listen( process.env.PORT || 5641, function(){
