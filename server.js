@@ -18,6 +18,7 @@ app.get('/', function(req, res) {
 
 app.get('/token_info/:address', async function(req, res) {
 	var result = await axios.post(`https://api.dex.guru/v2/tokens/`, {ids: [req.params.id]});
+	console.log(result);
 	res.json(result.data[0]);
 });
 
