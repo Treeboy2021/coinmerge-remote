@@ -10,11 +10,11 @@ app.get('/', function(req, res) {
 	res.send('??CoinMerage Remote API??');
 });
 // base url: https://api.coingecko.com/api/v3/coins
-// app.get('/contract_market_chart/:id/:address', async function(req,res){
+app.get('/contract_market_chart/:id/:address', async function(req,res){
 	
-// 	var result = await axios.get(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}/market_chart/?vs_currency=usd&days=1`);
-// 	res.json(result.data);
-// });
+	var result = await axios.get(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}/market_chart/?vs_currency=usd&days=1`);
+	res.json(result.data);
+});
 
 app.get('/token/:address', async function(req, res) {
 	try{
@@ -25,10 +25,10 @@ app.get('/token/:address', async function(req, res) {
 	}
 });
 
-// app.get('/contract_info/:id/:address', async function(req, res) {
-// 	var result = await axios.get(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}`);
-// 	res.json(result.data);
-// });
+app.get('/contract_info/:id/:address', async function(req, res) {
+	var result = await axios.get(`https://api.coingecko.com/api/v3/coins/${req.params.id}/contract/${req.params.address}`);
+	res.json(result.data);
+});
 
 app.get('/buy_sell_data/:address/:network', async function(req, res) {
 	var result = await axios.get(`https://api.dex.guru/v2/tokens/${req.params.address}-${req.params.network}/swaps`);
