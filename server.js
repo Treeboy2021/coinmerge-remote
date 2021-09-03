@@ -16,9 +16,13 @@ app.get('/', function(req, res) {
 // 	res.json(result.data);
 // });
 
-app.get('/token_info/:address', async function(req, res) {
-	var result = await axios.post(`https://api.dex.guru/v2/tokens/`, {ids: [req.params.address]});
-	res.json(result.data[0]);
+app.get('/token/:address', async function(req, res) {
+	try{
+		var result = await axios.post(`https://api.dex.guru/v2/tokens/`, {ids: [req.params.address]});
+		res.json(result.data[0]);
+	} catch(e) {
+		console.log(e);
+	}
 });
 
 // app.get('/contract_info/:id/:address', async function(req, res) {
