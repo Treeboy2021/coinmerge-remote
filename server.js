@@ -31,7 +31,7 @@ app.get('/contract_info/:id/:address', async function(req, res) {
 });
 
 app.get('/token/transactions/:address/:network', async function(req, res) {
-	var result = await axios.get(`https://api.dex.guru/v2/tokens/${req.params.address}-${req.params.network}/swaps`);
+	var result = await axios.get(`https://api.dex.guru/v2/tokens/${req.params.address}-${req.params.network}/swaps`, {withCredentials: true});
 	res.json(result.data);
 })
 
